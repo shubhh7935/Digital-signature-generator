@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const colorPicker = document.getElementById('colorPicker');
     const penThickness = document.getElementById('penThickness');
     const downloadBtn = document.getElementById('downloadBtn');
-    const downloadTransparentBtn = document.getElementById('downloadTransparentBtn');
     const clearBtn = document.getElementById('clearBtn');
     
     let drawing = false;
@@ -123,23 +122,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/png');
         link.download = 'signature.png';
-        link.click();
-    }
-
-    function downloadTransparentSignature() {
-        const tempCanvas = document.createElement('canvas');
-        const tempCtx = tempCanvas.getContext('2d');
-        tempCanvas.width = canvas.width;
-        tempCanvas.height = canvas.height;
-
-        tempCtx.drawImage(canvas, 0, 0);
-        tempCtx.globalCompositeOperation = 'destination-in';
-        tempCtx.fillStyle = 'rgba(0,0,0,0)';
-        tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-
-        const link = document.createElement('a');
-        link.href = tempCanvas.toDataURL('image/png');
-        link.download = 'signature_no_bg.png';
         link.click();
     }
 
